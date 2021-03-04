@@ -10,7 +10,7 @@ function Header() {
 
   return (
     <StyledHeader>
-      <SearchInput data-testid="search-bar" search={fetchVideos}/>
+      <SearchInput data-testid="search-bar" search={fetchVideos} />
       <SwitchButton
         data-testid="theme-switch-button"
         toggled={false}

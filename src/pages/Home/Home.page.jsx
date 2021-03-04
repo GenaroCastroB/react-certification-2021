@@ -9,7 +9,11 @@ function HomePage() {
 
   return (
     <section className="homepage" data-testid="home-page">
-      {selectedVideo ? <VideoDescription video={selectedVideo} relatedVideos={videos}/> : <VideoList videos={videos} />}
+      {selectedVideo ? (
+        <VideoDescription video={selectedVideo} relatedVideos={videos} />
+      ) : (
+        <VideoList videos={videos} />
+      )}
     </section>
   );
 }
