@@ -8,6 +8,7 @@ export const ItemContainer = styled.div`
   -webkit-box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.43);
   box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.43);
   border-radius: 10px;
+  word-break: break-all;
 `;
 
 export const VideoImage = styled.img`
