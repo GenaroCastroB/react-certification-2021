@@ -22,6 +22,7 @@ export const StyledRelatedVideoTitleContainer = styled.div`
 
 export const StyledRelatedVideoTitle = styled.div`
   line-height: 1;
+  font-size: medium;
 `;
 
 export default StyledRelatedVideoContainer;

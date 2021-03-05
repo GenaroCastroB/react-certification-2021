@@ -18,12 +18,15 @@ function VideosProvider({ children }) {
   const [selectedVideo, setselectedVideo] = useState(null);
   // const history = useHistory();
 
-  const fetchVideos = async (searchText) => {
+  const fetchVideos = async (searchText = 'wizeline') => {
+    if (process.env.REACT_APP_ENV !== 'prod') {
+      setVideos(videosMockedData.items);
+      return;
+    }
     const response = await youtubeApi.get('/search', {
       params: { q: searchText },
     });
     setVideos(response.data.items);
-    setVideos(videosMockedData.items);
   };
 
   const handleSelectVideo = (video) => {
