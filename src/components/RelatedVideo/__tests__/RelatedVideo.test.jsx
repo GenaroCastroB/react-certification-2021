@@ -15,17 +15,18 @@ beforeAll(() => {
       thumbnails: {
         medium: {
           url: 'url',
-        }
+        },
       },
       title: 'title',
-    }
+    },
   };
 });
 
 describe('Test RelatedVideo component', () => {
-
   it('expect to render correctly', () => {
-    const { getByRole, getByAltText } = render(<RelatedVideo relatedVideo={relatedVideo}/>);
+    const { getByRole, getByAltText } = render(
+      <RelatedVideo relatedVideo={relatedVideo} />
+    );
 
     expect(getByRole('img')).toBeTruthy();
     expect(getByAltText('title')).toBeTruthy();
@@ -33,7 +34,7 @@ describe('Test RelatedVideo component', () => {
 
   it('expect click to be executed correctly', () => {
     const { handleSelectVideo } = useVideos();
-    const { getByTestId } = render(<RelatedVideo relatedVideo={relatedVideo}/>);
+    const { getByTestId } = render(<RelatedVideo relatedVideo={relatedVideo} />);
 
     fireEvent.click(getByTestId('related-video-container'));
     expect(handleSelectVideo).toHaveBeenCalledTimes(1);

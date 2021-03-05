@@ -11,15 +11,15 @@ describe('Test SearchInput component', () => {
 
   it('expect to search on enter', () => {
     const handleSearch = jest.fn();
-    const { getByRole } = render(<SearchInput search={handleSearch}/>);
-    fireEvent.keyDown(getByRole('textbox'), { key: 'Enter', code: 'Enter' })
+    const { getByRole } = render(<SearchInput search={handleSearch} />);
+    fireEvent.keyDown(getByRole('textbox'), { key: 'Enter', code: 'Enter' });
     expect(getByRole('textbox')).toBeTruthy();
     expect(handleSearch).toHaveBeenCalledTimes(1);
   });
 
   it('expect not to search on key', () => {
     const handleSearch = jest.fn();
-    const { getByRole } = render(<SearchInput search={handleSearch}/>);
+    const { getByRole } = render(<SearchInput search={handleSearch} />);
     fireEvent.keyDown(getByRole('textbox'), { key: 'A', code: 'A' });
     expect(getByRole('textbox')).toBeTruthy();
     expect(handleSearch).toHaveBeenCalledTimes(0);

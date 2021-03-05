@@ -13,40 +13,42 @@ beforeAll(() => {
   });
   video = {
     id: {
-      videoId: 'videoId'
+      videoId: 'videoId',
     },
     snippet: {
       thumbnails: {
         medium: {
           url: 'url',
-        }
+        },
       },
       title: 'video-title',
       description: 'video-description',
-    }
+    },
   };
   relatedVideos = [
     {
       id: {
-        videoId: 'videoId'
+        videoId: 'videoId',
       },
       etag: 'etag',
       snippet: {
         thumbnails: {
           medium: {
             url: 'url',
-          }
+          },
         },
         title: 'title',
         description: 'description',
-      }
-    }
+      },
+    },
   ];
 });
 
 describe('Test VideoDescription component', () => {
   it('expect to render correctly', () => {
-    const { getByText, getByTitle } = render(<VideoDescription video={video} relatedVideos={relatedVideos}/>);
+    const { getByText, getByTitle } = render(
+      <VideoDescription video={video} relatedVideos={relatedVideos} />
+    );
 
     expect(getByText('video-title').tagName).toBe('H3');
     expect(getByText('video-description').tagName).toBe('P');

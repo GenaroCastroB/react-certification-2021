@@ -13,26 +13,25 @@ beforeAll(() => {
   videos = [
     {
       id: {
-        videoId: 'videoId'
+        videoId: 'videoId',
       },
       etag: 'etag1',
       snippet: {
         thumbnails: {
           medium: {
             url: 'url',
-          }
+          },
         },
         title: 'title',
         description: 'description',
-      }
-    }
+      },
+    },
   ];
 });
 
 describe('Test VideoList component', () => {
-
   it('expect to render correctly', () => {
-    const { getByRole, getByAltText } = render(<VideoList videos={videos}/>);
+    const { getByRole, getByAltText } = render(<VideoList videos={videos} />);
 
     expect(getByRole('img')).toBeTruthy();
     expect(getByAltText('title')).toBeTruthy();
