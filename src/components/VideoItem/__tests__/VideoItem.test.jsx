@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import VideoItem from '../VideoItem.component';
 import { useVideos } from '../../../providers/Videos';
 
@@ -29,5 +29,12 @@ describe('Test VideoItem component', () => {
     expect(getByText('Title').tagName).toBe('H3');
     expect(getByText('Description').tagName).toBe('P');
     expect(getByAltText('Title').tagName).toBe('IMG');
+  });
+
+  it('select a video', () => {
+    const { handleSelectVideo } = useVideos();
+    const { getByTestId } = render(<VideoItem item={item} />);
+    fireEvent.click(getByTestId('video-item-container'));
+    expect(handleSelectVideo).toHaveBeenCalledTimes(1);
   });
 });

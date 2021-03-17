@@ -5,6 +5,8 @@ const StyledSearchInput = styled.input`
   padding: 10px;
   outline: none;
   border-radius: 5px;
+  border-color: white;
+  font-size: large;
 `;
 
 export const InputContainer = styled.div`
@@ -12,7 +14,7 @@ export const InputContainer = styled.div`
   display: flex;
   width: 45%;
   margin: 0 auto;
-  line-height: 1.1876em;
+  line-height: 1em;
 `;
 
 export const InputIcon = styled.i`
@@ -22,6 +24,7 @@ export const InputIcon = styled.i`
   min-width: 50px;
   text-align: center;
   background: inherit;
+  font-size: 1.5rem;
 `;
 
 export default StyledSearchInput;

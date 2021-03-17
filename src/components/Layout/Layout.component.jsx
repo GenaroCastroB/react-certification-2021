@@ -1,13 +1,15 @@
 import React from 'react';
 import Header from '../Header';
-
-import './Layout.styles.css';
+import StyledMainContainer from './Layout.styles';
+import { useVideos } from '../../providers/Videos';
 
 function Layout({ children }) {
+  const { darkTheme } = useVideos();
+
   return (
     <>
       <Header />
-      <main className="container">{children}</main>
+      <StyledMainContainer className="container" darkTheme={darkTheme}>{children}</StyledMainContainer>
     </>
   );
 }

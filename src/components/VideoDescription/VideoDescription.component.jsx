@@ -4,27 +4,35 @@ import StyledDescriptionContainer, {
   StyledVideoDescription,
 } from './VideoDescription.styles';
 import Relatedvideo from '../RelatedVideo';
+import NotFound from '../../pages/NotFound';
+import { useVideos } from '../../providers/Videos';
 
-function VideoDescription({ video, relatedVideos }) {
-  return (
-    <StyledDescriptionContainer>
-      <StyledVideoDescription>
-        <iframe
-          title="video"
-          width="100%"
-          height="500px"
-          src={`https://www.youtube.com/embed/${video.id.videoId}`}
-        />
-        <h3>{video.snippet.title}</h3>
-        <p>{video.snippet.description}</p>
-      </StyledVideoDescription>
-      <StyledRelatedVideosContainer>
-        {relatedVideos.map((realtedVideo) => {
-          return <Relatedvideo relatedVideo={realtedVideo} key={realtedVideo.etag} />;
-        })}
-      </StyledRelatedVideosContainer>
-    </StyledDescriptionContainer>
-  );
+function VideoDescription() {
+  const { videos, selectedVideo } = useVideos();
+
+  if (selectedVideo) {
+    return (
+      <StyledDescriptionContainer>
+        <StyledVideoDescription>
+          <iframe
+            title="video"
+            width="100%"
+            height="500px"
+            src={`https://www.youtube.com/embed/${selectedVideo.id.videoId}`}
+          />
+          <h3>{selectedVideo.snippet.title}</h3>
+          <p>{selectedVideo.snippet.description}</p>
+        </StyledVideoDescription>
+        <StyledRelatedVideosContainer>
+          {videos.map((realtedVideo) => {
+            return <Relatedvideo relatedVideo={realtedVideo} key={realtedVideo.etag} />;
+          })}
+        </StyledRelatedVideosContainer>
+      </StyledDescriptionContainer>
+    );
+  }
+
+  return <NotFound />
 }
 
 export default VideoDescription;
