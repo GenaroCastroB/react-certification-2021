@@ -1,9 +1,14 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import VideoItem from '../VideoItem.component';
+import { useVideos } from '../../../providers/Videos';
 
+jest.mock('../../../providers/Videos');
 let item;
 beforeAll(() => {
+  useVideos.mockReturnValue({
+    handleSelectVideo: jest.fn(),
+  });
   item = {
     snippet: {
       title: 'Title',

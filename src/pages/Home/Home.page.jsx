@@ -1,14 +1,19 @@
 import React from 'react';
 import './Home.styles.css';
-import videosMockedData from '../../mocks/youtube-videos-mock.json';
-import VideoItem from '../../components/VideoItem';
+import VideoList from '../../components/VideoList';
+import VideoDescription from '../../components/VideoDescription';
+import { useVideos } from '../../providers/Videos';
 
 function HomePage() {
+  const { videos, selectedVideo } = useVideos();
+
   return (
     <section className="homepage" data-testid="home-page">
-      {videosMockedData.items.map((item) => (
-        <VideoItem item={item} key={item.etag} />
-      ))}
+      {selectedVideo ? (
+        <VideoDescription video={selectedVideo} relatedVideos={videos} />
+      ) : (
+        <VideoList videos={videos} />
+      )}
     </section>
   );
 }
