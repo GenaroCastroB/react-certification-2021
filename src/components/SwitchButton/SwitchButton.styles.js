@@ -19,10 +19,11 @@ export const SwitchLabel = styled.label`
   width: 40px;
   height: 25px;
   border-radius: 100px;
-  border: 2px solid gray;
+  border: 2px solid white;
   position: relative;
   transition: background-color 0.2s;
   margin: 0 10px;
+  background-color: ${(props) => (props.toggled ? '#85e290a3' : ' inherit')};
 `;
 
 export const SwitchSpan = styled.span`
@@ -34,7 +35,7 @@ export const SwitchSpan = styled.span`
   height: 16px;
   border-radius: 45px;
   transition: 0.2s;
-  background: grey;
+  background: white;
   box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
   ${SwitchInput}:checked + ${SwitchLabel} & {
     left: calc(100% - 2px);

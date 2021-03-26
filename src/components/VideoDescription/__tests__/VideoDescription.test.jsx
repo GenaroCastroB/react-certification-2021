@@ -8,9 +8,6 @@ jest.mock('../../../providers/Videos');
 let video;
 let relatedVideos;
 beforeAll(() => {
-  useVideos.mockReturnValue({
-    handleSelectVideo: jest.fn(),
-  });
   video = {
     id: {
       videoId: 'videoId',
@@ -42,12 +39,18 @@ beforeAll(() => {
       },
     },
   ];
+
+  useVideos.mockReturnValue({
+    handleSelectVideo: jest.fn(),
+    videos: relatedVideos,
+    selectedVideo: video,
+  });
 });
 
 describe('Test VideoDescription component', () => {
   it('expect to render correctly', () => {
     const { getByText, getByTitle } = render(
-      <VideoDescription video={video} relatedVideos={relatedVideos} />
+      <VideoDescription />
     );
 
     expect(getByText('video-title').tagName).toBe('H3');

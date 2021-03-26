@@ -15,7 +15,7 @@ function SwitchButton({ toggled, onChange }) {
         checked={toggled}
         onChange={onChange}
       />
-      <SwitchLabel htmlFor="switch-input">
+      <SwitchLabel htmlFor="switch-input" toggled={toggled}>
         <SwitchSpan />
       </SwitchLabel>
       Dark Mode
