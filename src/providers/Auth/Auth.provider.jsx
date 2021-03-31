@@ -41,7 +41,7 @@ function AuthProvider({ children }) {
         setiIsAuthError(true);
       });
     return authenticated;
-  }, []);
+  }, [authenticated, history]);
 
   const logout = useCallback(() => {
     setAuthenticated(false);
