@@ -1,14 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import StyledDescriptionContainer, {
   StyledRelatedVideosContainer,
   StyledVideoDescription,
 } from './VideoDescription.styles';
+import { FavoritesButton } from '../Button';
 import Relatedvideo from '../RelatedVideo';
 import NotFound from '../../pages/NotFound';
 import { useVideos } from '../../providers/Videos';
+import { useAuth } from '../../providers/Auth';
+import favorites from '../../utils/favoriteVideos';
 
-function VideoDescription() {
-  const { videos, selectedVideo } = useVideos();
+function VideoDescription({ relatedVideos }) {
+  const { selectedVideo } = useVideos();
+  const { authenticated } = useAuth();
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const handleFavoritesClick = () => {
+    if (isFavorite) {
+      favorites.removeFromFavorites(selectedVideo.id);
+      setIsFavorite(false);
+      return;
+    }
+    favorites.addToFavorites(selectedVideo);
+    setIsFavorite(true);
+  };
+
+  useEffect(() => {
+    if (selectedVideo) {
+      setIsFavorite(!!favorites.getFavoriteVideo(selectedVideo.id));
+    }
+  }, [selectedVideo]);
 
   if (selectedVideo) {
     return (
@@ -18,21 +39,28 @@ function VideoDescription() {
             title="video"
             width="100%"
             height="500px"
-            src={`https://www.youtube.com/embed/${selectedVideo.id.videoId}`}
+            src={`https://www.youtube.com/embed/${selectedVideo.id}`}
           />
-          <h3>{selectedVideo.snippet.title}</h3>
-          <p>{selectedVideo.snippet.description}</p>
+          {authenticated && (
+            <FavoritesButton
+              label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+              handleClick={handleFavoritesClick}
+            />
+          )}
+          <h3>{selectedVideo.title}</h3>
+          <p>{selectedVideo.description}</p>
         </StyledVideoDescription>
         <StyledRelatedVideosContainer>
-          {videos.map((realtedVideo) => {
-            return <Relatedvideo relatedVideo={realtedVideo} key={realtedVideo.etag} />;
-          })}
+          {relatedVideos &&
+            relatedVideos.map((realtedVideo) => {
+              return <Relatedvideo relatedVideo={realtedVideo} key={realtedVideo.id} />;
+            })}
         </StyledRelatedVideosContainer>
       </StyledDescriptionContainer>
     );
   }
 
-  return <NotFound />
+  return <NotFound />;
 }
 
 export default VideoDescription;
