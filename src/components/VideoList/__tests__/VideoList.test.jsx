@@ -12,19 +12,10 @@ beforeAll(() => {
   });
   videos = [
     {
-      id: {
-        videoId: 'videoId',
-      },
-      etag: 'etag1',
-      snippet: {
-        thumbnails: {
-          medium: {
-            url: 'url',
-          },
-        },
-        title: 'title',
-        description: 'description',
-      },
+      id: 'videoId',
+      image: 'url',
+      title: 'title',
+      description: 'description',
     },
   ];
 });

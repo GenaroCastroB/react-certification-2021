@@ -10,15 +10,10 @@ beforeAll(() => {
     handleSelectVideo: jest.fn(),
   });
   item = {
-    snippet: {
-      title: 'Title',
-      description: 'Description',
-      thumbnails: {
-        medium: {
-          url: 'URL',
-        },
-      },
-    },
+    id: 'id',
+    title: 'Title',
+    description: 'Description',
+    image: 'URL',
   };
 });
 

@@ -14,12 +14,9 @@ function RelatedVideo({ relatedVideo }) {
       onClick={() => handleSelectVideo(relatedVideo)}
       data-testid="related-video-container"
     >
-      <StyledRelatedVideoImage
-        src={relatedVideo.snippet.thumbnails.medium.url}
-        alt={relatedVideo.snippet.title}
-      />
+      <StyledRelatedVideoImage src={relatedVideo.image} alt={relatedVideo.title} />
       <StyledRelatedVideoTitleContainer>
-        <StyledRelatedVideoTitle>{relatedVideo.snippet.title}</StyledRelatedVideoTitle>
+        <StyledRelatedVideoTitle>{relatedVideo.title}</StyledRelatedVideoTitle>
       </StyledRelatedVideoTitleContainer>
     </StyledRelatedVideoContainer>
   );

@@ -11,14 +11,8 @@ beforeAll(() => {
     handleSelectVideo: jest.fn(),
   });
   relatedVideo = {
-    snippet: {
-      thumbnails: {
-        medium: {
-          url: 'url',
-        },
-      },
-      title: 'title',
-    },
+    image: 'url',
+    title: 'title',
   };
 });
 

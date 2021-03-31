@@ -10,10 +10,10 @@ function VideoItem({ item }) {
       onClick={() => handleSelectVideo(item)}
       data-testid="video-item-container"
     >
-      <VideoImage src={item.snippet.thumbnails.medium.url} alt={item.snippet.title} />
+      <VideoImage src={item.image} alt={item.title} />
       <InfoContainer>
-        <h3>{item.snippet.title}</h3>
-        <p>{item.snippet.description}</p>
+        <h3>{item.title}</h3>
+        <p>{item.description}</p>
       </InfoContainer>
     </ItemContainer>
   );

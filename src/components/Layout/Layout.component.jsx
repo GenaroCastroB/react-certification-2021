@@ -9,7 +9,9 @@ function Layout({ children }) {
   return (
     <>
       <Header />
-      <StyledMainContainer className="container" darkTheme={darkTheme}>{children}</StyledMainContainer>
+      <StyledMainContainer className="container" darkTheme={darkTheme}>
+        {children}
+      </StyledMainContainer>
     </>
   );
 }

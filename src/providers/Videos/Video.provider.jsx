@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router';
 import youtubeApi from '../../api/youtube';
 import videosMockedData from '../../mocks/youtube-videos-mock.json';
+import VideosAdapters from '../../utils/adapters/videoItem';
 
 const VideoContext = React.createContext(null);
 
@@ -21,18 +22,18 @@ function VideosProvider({ children }) {
 
   const fetchVideos = async (searchText = 'wizeline') => {
     if (process.env.REACT_APP_ENV !== 'prod') {
-      setVideos(videosMockedData.items);
+      setVideos(VideosAdapters.adaptApiYoutubeVideoData(videosMockedData.items));
       return;
     }
     const response = await youtubeApi.get('/search', {
       params: { q: searchText },
     });
-    setVideos(response.data.items);
+    setVideos(VideosAdapters.adaptApiYoutubeVideoData(response.data.items));
   };
 
   const handleSelectVideo = (video) => {
     setselectedVideo(video);
-    history.push(video.id.videoId);
+    history.push(video.id);
   };
 
   useEffect(() => {
@@ -41,7 +42,14 @@ function VideosProvider({ children }) {
 
   return (
     <VideoContext.Provider
-      value={{ videos, fetchVideos, selectedVideo, handleSelectVideo, darkTheme, setDarkTheme }}
+      value={{
+        videos,
+        fetchVideos,
+        selectedVideo,
+        handleSelectVideo,
+        darkTheme,
+        setDarkTheme,
+      }}
     >
       {children}
     </VideoContext.Provider>
